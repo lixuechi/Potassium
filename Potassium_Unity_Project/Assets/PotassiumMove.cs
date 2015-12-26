@@ -23,6 +23,7 @@ public class PotassiumMove : MonoBehaviour {
 
 	void Update () {
 
+		// make a decision for the moving direction
 		if (Time.realtimeSinceStartup - lastTimeCheckpoint >= 5) 
 		{
 			Debug.Log("Last time checkpoint updated");
@@ -67,6 +68,20 @@ public class PotassiumMove : MonoBehaviour {
 			break;
 		}
 
+
+		// update boundaries
+		if (currentPosition.x <= -7 || currentPosition.x >= 7) 
+		{
+			Debug.Log("Move direction changed due to the boundary");
+			currMoveDirection = (currMoveDirection == MOVE_LEFT) ? MOVE_RIGHT : MOVE_LEFT;
+		}
+		if (currentPosition.y <= -4 || currentPosition.y >= 4) 
+		{
+			Debug.Log("Move direction changed due to the boundary");
+			currMoveDirection = (currMoveDirection == MOVE_UP) ? MOVE_DOWN : MOVE_UP;
+		}
+
+		
 		// copy the changes made for current position
 		transform.position = currentPosition;
 	}
