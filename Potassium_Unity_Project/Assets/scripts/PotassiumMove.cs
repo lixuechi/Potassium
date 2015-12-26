@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PotassiumMove : MonoBehaviour {
+public class PotassiumMove : GlobalPotassium {
 
 	private float lastTimeCheckpoint = 0;
 	private Vector3 currentPosition = new Vector3();
@@ -13,6 +13,7 @@ public class PotassiumMove : MonoBehaviour {
 	const int MOVE_IN_CIRCLE = 4;
 	const int MOVE_IN_SQUARE = 5;
 	const int STAY_STATIC = 6;
+	const int MOVE_TO_ORANGE = 7;
 	int NUM_OF_MOVE_OPTIONS = 0;
 
 	private int randomMovePattern = 0;
@@ -21,6 +22,9 @@ public class PotassiumMove : MonoBehaviour {
 
 	private Vector3 horizontalMoveUnit = new Vector3(0.01f, 0, 0);
 	private Vector3 verticalMoveUnit = new Vector3(0, 0.01f, 0);
+
+
+	private Vector3 orangePos = new Vector3();
 
 	void Start () {
 		NUM_OF_MOVE_OPTIONS = 6;
@@ -61,6 +65,9 @@ public class PotassiumMove : MonoBehaviour {
 				currMoveDirection = STAY_STATIC;
 				currMovePattern = MOVE_IN_SQUARE;
 				break;
+			case MOVE_TO_ORANGE: Debug.Log("Move to the orange(s)");
+				currMovePattern = MOVE_TO_ORANGE;
+				break;
 			default: Debug.Log("Default move up");
 					 currMoveDirection = MOVE_UP;
 				currMovePattern = MOVE_UP;
@@ -88,6 +95,8 @@ public class PotassiumMove : MonoBehaviour {
 			break;
 		case MOVE_IN_SQUARE: currentPosition = moveInASquare();
 			break;
+		case MOVE_TO_ORANGE: currentPosition = moveToOrange(currentPosition);
+			break;
 		}
 
 
@@ -106,6 +115,18 @@ public class PotassiumMove : MonoBehaviour {
 		}
 
 		
+		// Going to the orange(s) if there's any
+		if(isOrangePresent)
+		{
+			if(orangeTransform != null)
+			{
+				orangePos = orangeTransform.position;
+
+				currMovePattern = MOVE_TO_ORANGE;
+			}
+		}
+
+
 		// copy the changes made for current position
 		transform.position = currentPosition;
 	}
@@ -161,6 +182,12 @@ public class PotassiumMove : MonoBehaviour {
 		timeSinceStartMovingInSquare += Time.deltaTime;
 
 		return currPosWhenMovingInSquare;
+	}
+
+	Vector3 moveToOrange(Vector3 currPos)
+	{
+		
+		return currPos;
 	}
 
 	const int moveCircleRadius = 1;
