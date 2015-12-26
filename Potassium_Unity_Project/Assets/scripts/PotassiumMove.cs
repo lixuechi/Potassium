@@ -132,25 +132,25 @@ public class PotassiumMove : MonoBehaviour {
 		Debug.Log ("timeSinceStartMovingInSquare == " + timeSinceStartMovingInSquare);
 		if (timeSinceStartMovingInSquare <= 2) 
 		{
-			currPosWhenMovingInSquare = moveHorizontally(currPosWhenMovingInSquare, true, 2);
+			currPosWhenMovingInSquare = moveHorizontally(currPosWhenMovingInSquare, true, 1);
 			currMoveDirection = MOVE_LEFT;
 			Debug.Log("move in a square: left");
 		} 
 		else if (timeSinceStartMovingInSquare <= 4) 
 		{
-			currPosWhenMovingInSquare = moveVertically(currPosWhenMovingInSquare, false, 2);
+			currPosWhenMovingInSquare = moveVertically(currPosWhenMovingInSquare, false, 1);
 			currMoveDirection = MOVE_DOWN;
 			Debug.Log("move in a square: down");
 		} 
 		else if (timeSinceStartMovingInSquare <= 6) 
 		{
-			currPosWhenMovingInSquare = moveHorizontally(currPosWhenMovingInSquare, false, 2);
+			currPosWhenMovingInSquare = moveHorizontally(currPosWhenMovingInSquare, false, 1);
 			currMoveDirection = MOVE_RIGHT;
 			Debug.Log("move in a square: right");
 		} 
 		else if (timeSinceStartMovingInSquare <= 8) 
 		{
-			currPosWhenMovingInSquare = moveVertically(currPosWhenMovingInSquare, true, 2);
+			currPosWhenMovingInSquare = moveVertically(currPosWhenMovingInSquare, true, 1);
 			currMoveDirection = MOVE_UP;
 			Debug.Log("move in a square: up");
 		} 

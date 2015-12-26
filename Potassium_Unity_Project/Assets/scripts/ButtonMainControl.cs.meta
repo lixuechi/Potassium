@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 2391cd8cbf4d74e6293c634a7b9f8bd5
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - OrangeFeed: {fileID: 400000, guid: ee63988ae71c24689a3d7fd565fdf4a7, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
