@@ -186,7 +186,25 @@ public class PotassiumMove : GlobalPotassium {
 
 	Vector3 moveToOrange(Vector3 currPos)
 	{
+		if(orangePos.x - currPos.x > 0)
+		{
+			currPos += horizontalMoveUnit;
+		}
+		else if(orangePos.x - currPos.x < 0)
+		{
+			currPos -= horizontalMoveUnit;
+		}
 		
+		if(orangePos.y - currPos.y > 0)
+		{
+			currPos += verticalMoveUnit;
+		}
+		else if(orangePos.y - currPos.y < 0)
+		{
+			currPos -= verticalMoveUnit;
+		}
+		
+
 		return currPos;
 	}
 
