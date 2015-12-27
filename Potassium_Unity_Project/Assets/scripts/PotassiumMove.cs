@@ -62,6 +62,7 @@ public class PotassiumMove : GlobalPotassium {
 				currMovePattern = MOVE_IN_CIRCLE;
 				break;
 			case MOVE_IN_SQUARE: Debug.Log("Move in a square");
+				timeSinceStartMovingInSquare = 0; // init time since start moving in a square
 				currMoveDirection = STAY_STATIC;
 				currMovePattern = MOVE_IN_SQUARE;
 				break;
@@ -151,25 +152,25 @@ public class PotassiumMove : GlobalPotassium {
 
 		Debug.Log ("func moveInASquare called");
 		Debug.Log ("timeSinceStartMovingInSquare == " + timeSinceStartMovingInSquare);
-		if (timeSinceStartMovingInSquare <= 2) 
+		if (timeSinceStartMovingInSquare % 10 <= 2) 
 		{
 			currPosWhenMovingInSquare = moveHorizontally(currPosWhenMovingInSquare, true, 1);
 			currMoveDirection = MOVE_LEFT;
 			Debug.Log("move in a square: left");
 		} 
-		else if (timeSinceStartMovingInSquare <= 4) 
+		else if (timeSinceStartMovingInSquare % 10 <= 4) 
 		{
 			currPosWhenMovingInSquare = moveVertically(currPosWhenMovingInSquare, false, 1);
 			currMoveDirection = MOVE_DOWN;
 			Debug.Log("move in a square: down");
 		} 
-		else if (timeSinceStartMovingInSquare <= 6) 
+		else if (timeSinceStartMovingInSquare % 10 <= 6) 
 		{
 			currPosWhenMovingInSquare = moveHorizontally(currPosWhenMovingInSquare, false, 1);
 			currMoveDirection = MOVE_RIGHT;
 			Debug.Log("move in a square: right");
 		} 
-		else if (timeSinceStartMovingInSquare <= 8) 
+		else if (timeSinceStartMovingInSquare % 10 <= 8) 
 		{
 			currPosWhenMovingInSquare = moveVertically(currPosWhenMovingInSquare, true, 1);
 			currMoveDirection = MOVE_UP;
