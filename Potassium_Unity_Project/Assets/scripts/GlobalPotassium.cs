@@ -5,7 +5,7 @@ public class GlobalPotassium : MonoBehaviour {
 
 	public static bool isOrangePresent = false;
 	public static Transform orangeTransform;
-	public static bool isTired = true;
+	public static bool isTired = false;
 	public static int hpValue = 100;
 	private static float hpValueFloat = 100f;
 
@@ -17,6 +17,11 @@ public class GlobalPotassium : MonoBehaviour {
 		
 		hpValueFloat -= 0.005f;
 		hpValue = (int)hpValueFloat; 
+
+		if(hpValue <= 30)
+		{
+			isTired = true;
+		}
 
 	}
 }
