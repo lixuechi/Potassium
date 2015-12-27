@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PotassiumMove : GlobalPotassium {
 
+	public Transform bedTransform;
+
 	private float lastTimeCheckpoint = 0;
 	private Vector3 currentPosition = new Vector3();
 
@@ -14,6 +16,7 @@ public class PotassiumMove : GlobalPotassium {
 	const int MOVE_IN_SQUARE = 5;
 	const int STAY_STATIC = 6;
 	const int MOVE_TO_ORANGE = 7;
+	const int MOVE_TO_BED = 8;
 	int NUM_OF_MOVE_OPTIONS = 0;
 
 	private int randomMovePattern = 0;
@@ -33,7 +36,7 @@ public class PotassiumMove : GlobalPotassium {
 	void Update () {
 
 		// make a decision for the moving direction
-		if (Time.realtimeSinceStartup - lastTimeCheckpoint >= 5) 
+		if (Time.realtimeSinceStartup - lastTimeCheckpoint >= 10) 
 		{
 			Debug.Log("Last time checkpoint updated");
 
@@ -69,6 +72,9 @@ public class PotassiumMove : GlobalPotassium {
 			case MOVE_TO_ORANGE: Debug.Log("Move to the orange(s)");
 				currMovePattern = MOVE_TO_ORANGE;
 				break;
+			case MOVE_TO_BED: Debug.Log("Move to bed");
+				currMovePattern = MOVE_TO_BED;
+				break;
 			default: Debug.Log("Default move up");
 					 currMoveDirection = MOVE_UP;
 				currMovePattern = MOVE_UP;
@@ -97,6 +103,8 @@ public class PotassiumMove : GlobalPotassium {
 		case MOVE_IN_SQUARE: currentPosition = moveInASquare(currentPosition);
 			break;
 		case MOVE_TO_ORANGE: currentPosition = moveToOrange(currentPosition);
+			break;
+		case MOVE_TO_BED: currentPosition = moveToBed(currentPosition);
 			break;
 		}
 
@@ -128,6 +136,13 @@ public class PotassiumMove : GlobalPotassium {
 		}
 
 
+		// Going to bed if tired or lazy
+		if(isTired)
+		{
+			currMovePattern = MOVE_TO_BED;
+		}
+
+
 		// copy the changes made for current position
 		transform.position = currentPosition;
 	}
@@ -151,28 +166,29 @@ public class PotassiumMove : GlobalPotassium {
 
 		Debug.Log ("func moveInASquare called");
 		Debug.Log ("timeSinceStartMovingInSquare == " + timeSinceStartMovingInSquare);
-		if (timeSinceStartMovingInSquare % 10 <= 2) 
+		if (timeSinceStartMovingInSquare % 8 <= 2) 
 		{
-			pos = moveHorizontally(pos, true, 1);
-			currMoveDirection = MOVE_LEFT;
+
+			pos = moveHorizontally(pos, currMoveDirection == MOVE_LEFT, 1);
+			currMoveDirection = (currMoveDirection == MOVE_LEFT) ? MOVE_LEFT : MOVE_RIGHT;
 			Debug.Log("move in a square: left");
 		} 
-		else if (timeSinceStartMovingInSquare % 10 <= 4) 
+		else if (timeSinceStartMovingInSquare % 8 <= 4) 
 		{
-			pos = moveVertically(pos, false, 1);
-			currMoveDirection = MOVE_DOWN;
+			pos = moveVertically(pos, currMoveDirection == MOVE_UP, 1);
+			currMoveDirection = (currMoveDirection == MOVE_DOWN) ? MOVE_DOWN : MOVE_UP;
 			Debug.Log("move in a square: down");
 		} 
-		else if (timeSinceStartMovingInSquare % 10 <= 6) 
+		else if (timeSinceStartMovingInSquare % 8 <= 6) 
 		{
-			pos = moveHorizontally(pos, false, 1);
-			currMoveDirection = MOVE_RIGHT;
+			pos = moveHorizontally(pos, currMoveDirection == MOVE_LEFT, 1);
+			currMoveDirection = (currMoveDirection == MOVE_RIGHT) ? MOVE_RIGHT : MOVE_LEFT;
 			Debug.Log("move in a square: right");
 		} 
-		else if (timeSinceStartMovingInSquare % 10 <= 8) 
+		else if (timeSinceStartMovingInSquare % 8 <= 8) 
 		{
-			pos = moveVertically(pos, true, 1);
-			currMoveDirection = MOVE_UP;
+			pos = moveVertically(pos, currMoveDirection == MOVE_UP, 1);
+			currMoveDirection = (currMoveDirection == MOVE_UP) ? MOVE_UP : MOVE_DOWN;
 			Debug.Log("move in a square: up");
 		} 
 		else 
@@ -206,6 +222,31 @@ public class PotassiumMove : GlobalPotassium {
 		
 
 		return currPos;
+	}
+
+	Vector3 moveToBed(Vector3 currPos)
+	{
+		Vector3 bedPos = bedTransform.position;
+		if(bedPos.x - currPos.x > 0)
+		{
+			currPos += horizontalMoveUnit;
+		}
+		else if(bedPos.x - currPos.x < 0)
+		{
+			currPos -= horizontalMoveUnit;
+		}
+		
+		if(bedPos.y - currPos.y > 0)
+		{
+			currPos += verticalMoveUnit;
+		}
+		else if(bedPos.y - currPos.y < 0)
+		{
+			currPos -= verticalMoveUnit;
+		}
+		
+
+		return currPos;		
 	}
 
 	const int moveCircleRadius = 1;

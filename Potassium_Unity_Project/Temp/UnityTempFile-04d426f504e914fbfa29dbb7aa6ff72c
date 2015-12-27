@@ -41,6 +41,7 @@
 -define:ENABLE_PROFILER
 -define:UNITY_EDITOR
 -define:UNITY_EDITOR_OSX
+'Assets/MouseControl.cs'
 'Assets/scripts/ButtonMainControl.cs'
 'Assets/scripts/FeedFoodToPotassium.cs'
 'Assets/scripts/GlobalPotassium.cs'
