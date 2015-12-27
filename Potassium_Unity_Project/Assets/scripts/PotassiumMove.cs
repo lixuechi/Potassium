@@ -94,7 +94,7 @@ public class PotassiumMove : GlobalPotassium {
 			break;
 		case MOVE_IN_CIRCLE: moveInACircle();
 			break;
-		case MOVE_IN_SQUARE: currentPosition = moveInASquare();
+		case MOVE_IN_SQUARE: currentPosition = moveInASquare(currentPosition);
 			break;
 		case MOVE_TO_ORANGE: currentPosition = moveToOrange(currentPosition);
 			break;
@@ -146,33 +146,32 @@ public class PotassiumMove : GlobalPotassium {
 
 	// Counter-clockwise: left -> down -> right -> up -> left
 	static float timeSinceStartMovingInSquare = 0;
-	static Vector3 currPosWhenMovingInSquare = new Vector3();
-	Vector3 moveInASquare()
+	Vector3 moveInASquare(Vector3 pos)
 	{
 
 		Debug.Log ("func moveInASquare called");
 		Debug.Log ("timeSinceStartMovingInSquare == " + timeSinceStartMovingInSquare);
 		if (timeSinceStartMovingInSquare % 10 <= 2) 
 		{
-			currPosWhenMovingInSquare = moveHorizontally(currPosWhenMovingInSquare, true, 1);
+			pos = moveHorizontally(pos, true, 1);
 			currMoveDirection = MOVE_LEFT;
 			Debug.Log("move in a square: left");
 		} 
 		else if (timeSinceStartMovingInSquare % 10 <= 4) 
 		{
-			currPosWhenMovingInSquare = moveVertically(currPosWhenMovingInSquare, false, 1);
+			pos = moveVertically(pos, false, 1);
 			currMoveDirection = MOVE_DOWN;
 			Debug.Log("move in a square: down");
 		} 
 		else if (timeSinceStartMovingInSquare % 10 <= 6) 
 		{
-			currPosWhenMovingInSquare = moveHorizontally(currPosWhenMovingInSquare, false, 1);
+			pos = moveHorizontally(pos, false, 1);
 			currMoveDirection = MOVE_RIGHT;
 			Debug.Log("move in a square: right");
 		} 
 		else if (timeSinceStartMovingInSquare % 10 <= 8) 
 		{
-			currPosWhenMovingInSquare = moveVertically(currPosWhenMovingInSquare, true, 1);
+			pos = moveVertically(pos, true, 1);
 			currMoveDirection = MOVE_UP;
 			Debug.Log("move in a square: up");
 		} 
@@ -182,7 +181,7 @@ public class PotassiumMove : GlobalPotassium {
 		}
 		timeSinceStartMovingInSquare += Time.deltaTime;
 
-		return currPosWhenMovingInSquare;
+		return pos;
 	}
 
 	Vector3 moveToOrange(Vector3 currPos)
