@@ -8,6 +8,7 @@ public class GlobalPotassium : MonoBehaviour {
 	public static bool isTired = false;
 	public static int hpValue = 100;
 	private static float hpValueFloat = 100f;
+	public static bool isHackOn = true;
 
 	void Start () {
 	

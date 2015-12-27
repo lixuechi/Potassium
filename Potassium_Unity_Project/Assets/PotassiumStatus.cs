@@ -13,10 +13,14 @@ public class PotassiumStatus : GlobalPotassium {
 	
 	void Update () {
 	
-		if(hpText != null)
+		if(!isHackOn)
+		{
+			hpText.text = "";
+		}
+		else if(hpText != null)
 		{
 			hpText.text = "HP: " + hpValue;
-			Debug.Log("HP is " + hpValue);
+			//Debug.Log("HP is " + hpValue);
 		}
 
 	}
