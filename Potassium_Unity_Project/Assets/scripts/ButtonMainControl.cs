@@ -14,6 +14,8 @@ public class ButtonMainControl : GlobalPotassium {
 		List<string> btnNames = new List<string> ();
 		btnNames.Add ("Feed");
 		btnNames.Add("Hack");
+		btnNames.Add("Minus");
+		btnNames.Add("Plus");
 
 		foreach (string btnName in btnNames) 
 		{
@@ -40,6 +42,14 @@ public class ButtonMainControl : GlobalPotassium {
 			// show/hide the statistics
 			isHackOn = !isHackOn;
 			hackText.text = isHackOn ? "Hack On" : "Hack Off";
+			break;
+			case "Minus":
+			Debug.Log("Decrement speed");
+			time_speed--;
+			break;
+			case "Plus":
+			Debug.Log("Increment speed");
+			time_speed++;
 			break;
 		}
 	}

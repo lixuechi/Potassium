@@ -9,6 +9,7 @@ public class GlobalPotassium : MonoBehaviour {
 	public static int hpValue = 100;
 	private static float hpValueFloat = 100f;
 	public static bool isHackOn = true;
+	public static int time_speed = 1;
 
 	void Start () {
 	

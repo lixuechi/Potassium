@@ -12,7 +12,7 @@ public class MouseControl : MonoBehaviour {
 	void Update () {
 		if(Input.GetMouseButton(0))
 		{
-			Debug.Log("Mouse left button down");
+			//Debug.Log("Mouse left button down");
 			Vector3 ScreenSpace = Camera.main.WorldToScreenPoint(Potassium.position);
 			Vector3 offset = Potassium.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScreenSpace.z));
 

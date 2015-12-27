@@ -90,13 +90,13 @@ public class PotassiumMove : GlobalPotassium {
 
 		switch(currMovePattern)
 		{
-		case MOVE_UP: currentPosition += verticalMoveUnit;
+		case MOVE_UP: currentPosition = moveVertically(currentPosition, true, time_speed); 
 			break;
-		case MOVE_DOWN: currentPosition -= verticalMoveUnit;
+		case MOVE_DOWN: currentPosition = moveVertically(currentPosition, false, time_speed);
 			break;
-		case MOVE_LEFT: currentPosition -= horizontalMoveUnit;
+		case MOVE_LEFT: currentPosition = moveHorizontally(currentPosition, true, time_speed);
 			break;
-		case MOVE_RIGHT: currentPosition += horizontalMoveUnit;
+		case MOVE_RIGHT: currentPosition = moveHorizontally(currentPosition, false, time_speed);
 			break;
 		case MOVE_IN_CIRCLE: moveInACircle();
 			break;
@@ -169,25 +169,25 @@ public class PotassiumMove : GlobalPotassium {
 		if (timeSinceStartMovingInSquare % 8 <= 2) 
 		{
 
-			pos = moveHorizontally(pos, currMoveDirection == MOVE_LEFT, 1);
+			pos = moveHorizontally(pos, currMoveDirection == MOVE_LEFT, time_speed);
 			currMoveDirection = (currMoveDirection == MOVE_LEFT) ? MOVE_LEFT : MOVE_RIGHT;
 			Debug.Log("move in a square: left");
 		} 
 		else if (timeSinceStartMovingInSquare % 8 <= 4) 
 		{
-			pos = moveVertically(pos, currMoveDirection == MOVE_UP, 1);
+			pos = moveVertically(pos, currMoveDirection == MOVE_UP, time_speed);
 			currMoveDirection = (currMoveDirection == MOVE_DOWN) ? MOVE_DOWN : MOVE_UP;
 			Debug.Log("move in a square: down");
 		} 
 		else if (timeSinceStartMovingInSquare % 8 <= 6) 
 		{
-			pos = moveHorizontally(pos, currMoveDirection == MOVE_LEFT, 1);
+			pos = moveHorizontally(pos, currMoveDirection == MOVE_LEFT, time_speed);
 			currMoveDirection = (currMoveDirection == MOVE_RIGHT) ? MOVE_RIGHT : MOVE_LEFT;
 			Debug.Log("move in a square: right");
 		} 
 		else if (timeSinceStartMovingInSquare % 8 <= 8) 
 		{
-			pos = moveVertically(pos, currMoveDirection == MOVE_UP, 1);
+			pos = moveVertically(pos, currMoveDirection == MOVE_UP, time_speed);
 			currMoveDirection = (currMoveDirection == MOVE_UP) ? MOVE_UP : MOVE_DOWN;
 			Debug.Log("move in a square: up");
 		} 
