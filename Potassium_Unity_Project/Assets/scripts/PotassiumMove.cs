@@ -17,6 +17,7 @@ public class PotassiumMove : GlobalPotassium {
 	const int STAY_STATIC = 6;
 	const int MOVE_TO_ORANGE = 7;
 	const int MOVE_TO_BED = 8;
+	const int SLEEP_IN_BED = 9;
 	int NUM_OF_MOVE_OPTIONS = 0;
 
 	private int randomMovePattern = 0;
@@ -75,6 +76,9 @@ public class PotassiumMove : GlobalPotassium {
 			case MOVE_TO_BED: Debug.Log("Move to bed");
 				currMovePattern = MOVE_TO_BED;
 				break;
+			case SLEEP_IN_BED: Debug.Log("Sleep in bed");
+				currMovePattern = SLEEP_IN_BED;
+				break;
 			default: Debug.Log("Default move up");
 					 currMoveDirection = MOVE_UP;
 				currMovePattern = MOVE_UP;
@@ -105,6 +109,8 @@ public class PotassiumMove : GlobalPotassium {
 		case MOVE_TO_ORANGE: currentPosition = moveToOrange(currentPosition);
 			break;
 		case MOVE_TO_BED: currentPosition = moveToBed(currentPosition);
+			break;
+		case SLEEP_IN_BED: currentPosition = sleepInBed(currentPosition);
 			break;
 		}
 
@@ -247,6 +253,11 @@ public class PotassiumMove : GlobalPotassium {
 		
 
 		return currPos;		
+	}
+
+	Vector3 sleepInBed(Vector3 currPos)
+	{
+		return currPos;
 	}
 
 	const int moveCircleRadius = 1;
