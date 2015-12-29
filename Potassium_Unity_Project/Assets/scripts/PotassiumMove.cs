@@ -234,10 +234,12 @@ public class PotassiumMove : GlobalPotassium {
 			currPos -= verticalMoveUnit * time_speed;
 		}
 
-		if(bedPos.x - currPos.x <= 0.0001f && bedPos.y - currPos.y <= 0.0001f)
+		if(bedPos.x - currPos.x <= 0.0001f && bedPos.y - currPos.y <= 0.0001f  
+		   && currPos.x - bedPos.x <= 0.0001f && currPos.y - bedPos.y <= 0.0001f)
 		{
 			Debug.Log("Move pattern changes from MOVE_TO_BED to SLEEP_IN_BED");
 			currMovePattern = SLEEP_IN_BED;
+			isRecoveringHP = true;
 		}
 		
 
@@ -246,7 +248,7 @@ public class PotassiumMove : GlobalPotassium {
 
 	Vector3 sleepInBed(Vector3 currPos)
 	{
-		if(hpValue <= 99)
+		if(hpValue <= 98)
 		{
 		}
 		else

@@ -35,7 +35,7 @@ public class PotassiumStatus : GlobalPotassium {
 			{
 				// recover HP
 				Debug.Log("On trigger stay with Bed");
-				isRecoveringHP = true;
+				//isRecoveringHP = true;
 			}
 
 		}
