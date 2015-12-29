@@ -17,7 +17,11 @@ public class GlobalPotassium : MonoBehaviour {
 	
 	void Update () {
 		
-		hpValueFloat -= 0.005f;
+		if(hpValue >= 0)
+		{
+			hpValueFloat -= 0.005f * time_speed;
+		}
+		
 		hpValue = (int)hpValueFloat; 
 
 		if(hpValue <= 30)
