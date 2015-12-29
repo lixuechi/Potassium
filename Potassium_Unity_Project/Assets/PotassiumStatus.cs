@@ -23,5 +23,30 @@ public class PotassiumStatus : GlobalPotassium {
 			//Debug.Log("HP is " + hpValue);
 		}
 
+
+
+	}
+
+	void OnTriggerStay2D(Collider2D coll)
+	{
+		if(coll.gameObject.tag == "Bed")
+		{
+			if(hpValue <= 30)
+			{
+				// recover HP
+				Debug.Log("On trigger stay with Bed");
+				isRecoveringHP = true;
+			}
+
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D coll)
+	{
+		if(coll.gameObject.tag == "Bed" && isRecoveringHP)
+		{
+			isRecoveringHP = false;
+			Debug.Log("On trigger exit bed");
+		}
 	}
 }

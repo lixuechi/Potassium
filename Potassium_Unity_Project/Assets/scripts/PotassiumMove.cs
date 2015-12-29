@@ -8,21 +8,12 @@ public class PotassiumMove : GlobalPotassium {
 	private float lastTimeCheckpoint = 0;
 	private Vector3 currentPosition = new Vector3();
 
-	const int MOVE_UP = 0;
-	const int MOVE_DOWN = 1;
-	const int MOVE_LEFT = 2;
-	const int MOVE_RIGHT = 3;
-	const int MOVE_IN_CIRCLE = 4;
-	const int MOVE_IN_SQUARE = 5;
-	const int STAY_STATIC = 6;
-	const int MOVE_TO_ORANGE = 7;
-	const int MOVE_TO_BED = 8;
-	const int SLEEP_IN_BED = 9;
+
 	int NUM_OF_MOVE_OPTIONS = 0;
 
 	private int randomMovePattern = 0;
 	private int currMoveDirection = 0;
-	private int currMovePattern = 0;
+	
 
 	private Vector3 horizontalMoveUnit = new Vector3(0.01f, 0, 0);
 	private Vector3 verticalMoveUnit = new Vector3(0, 0.01f, 0);
@@ -31,13 +22,16 @@ public class PotassiumMove : GlobalPotassium {
 	private Vector3 orangePos = new Vector3();
 
 	void Start () {
-		NUM_OF_MOVE_OPTIONS = 6;
+		NUM_OF_MOVE_OPTIONS = 5;
 	}
 
 	void Update () {
 
 		// make a decision for the moving direction
-		if (Time.realtimeSinceStartup - lastTimeCheckpoint >= 10) 
+		if ( (Time.realtimeSinceStartup - lastTimeCheckpoint >= 10 / time_speed)
+		   && !(currMovePattern == SLEEP_IN_BED) 
+		   && !(currMovePattern == MOVE_TO_BED)
+		   && !isTired) 
 		{
 			Debug.Log("Last time checkpoint updated");
 
@@ -70,19 +64,6 @@ public class PotassiumMove : GlobalPotassium {
 				currMoveDirection = STAY_STATIC;
 				currMovePattern = MOVE_IN_SQUARE;
 				break;
-			case MOVE_TO_ORANGE: Debug.Log("Move to the orange(s)");
-				currMovePattern = MOVE_TO_ORANGE;
-				break;
-			case MOVE_TO_BED: Debug.Log("Move to bed");
-				currMovePattern = MOVE_TO_BED;
-				break;
-			case SLEEP_IN_BED: Debug.Log("Sleep in bed");
-				currMovePattern = SLEEP_IN_BED;
-				break;
-			default: Debug.Log("Default move up");
-					 currMoveDirection = MOVE_UP;
-				currMovePattern = MOVE_UP;
-					 break;
 			}
 
 			lastTimeCheckpoint = Time.realtimeSinceStartup;
@@ -111,6 +92,8 @@ public class PotassiumMove : GlobalPotassium {
 		case MOVE_TO_BED: currentPosition = moveToBed(currentPosition);
 			break;
 		case SLEEP_IN_BED: currentPosition = sleepInBed(currentPosition);
+			break;
+		case EXIT_BED: currentPosition = exitBed(currentPosition);
 			break;
 		}
 
@@ -235,20 +218,26 @@ public class PotassiumMove : GlobalPotassium {
 		Vector3 bedPos = bedTransform.position;
 		if(bedPos.x - currPos.x > 0)
 		{
-			currPos += horizontalMoveUnit;
+			currPos += horizontalMoveUnit * time_speed;
 		}
 		else if(bedPos.x - currPos.x < 0)
 		{
-			currPos -= horizontalMoveUnit;
+			currPos -= horizontalMoveUnit * time_speed;
 		}
 		
 		if(bedPos.y - currPos.y > 0)
 		{
-			currPos += verticalMoveUnit;
+			currPos += verticalMoveUnit * time_speed;
 		}
 		else if(bedPos.y - currPos.y < 0)
 		{
-			currPos -= verticalMoveUnit;
+			currPos -= verticalMoveUnit * time_speed;
+		}
+
+		if(bedPos.x - currPos.x <= 0.0001f && bedPos.y - currPos.y <= 0.0001f)
+		{
+			Debug.Log("Move pattern changes from MOVE_TO_BED to SLEEP_IN_BED");
+			currMovePattern = SLEEP_IN_BED;
 		}
 		
 
@@ -257,6 +246,31 @@ public class PotassiumMove : GlobalPotassium {
 
 	Vector3 sleepInBed(Vector3 currPos)
 	{
+		if(hpValue <= 99)
+		{
+		}
+		else
+		{
+			currMovePattern = EXIT_BED;
+		}
+		
+		return currPos;
+	}
+
+	Vector3 exitBed(Vector3 currPos)
+	{
+		if(currPos.x < 0)
+		{
+			currPos += horizontalMoveUnit;
+		}
+		if(currPos.y < 0)
+		{
+			currPos += verticalMoveUnit;
+		}
+		else if(currPos.y > 0)
+		{
+			currPos -= verticalMoveUnit;
+		}
 		return currPos;
 	}
 
