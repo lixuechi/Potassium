@@ -4,6 +4,9 @@ using System.Collections;
 public class GlobalPotassium : MonoBehaviour {
 
 	public static bool isOrangePresent = false;
+	public static bool isBlueBallPresent = false;
+	public static Transform BlueBall;
+
 	public static Transform orangeTransform;
 	public static bool isTired = false;
 	public static int hpValue = 100;
@@ -32,6 +35,29 @@ public class GlobalPotassium : MonoBehaviour {
 	}
 	
 	void Update () {
+
+		//Debug.Log("is Blue ball present is " + isBlueBallPresent);
+		if(isBlueBallPresent && BlueBall != null)
+		{
+			Debug.Log("blue ball is present and blue ball feed is not null");
+			if(Input.GetKey(KeyCode.UpArrow))
+			{
+				Debug.Log("move the blue ball upward");
+				BlueBall.position += new Vector3(0, 0.1f, 0);
+			}
+			else if (Input.GetKey(KeyCode.DownArrow))
+			{
+				BlueBall.position += new Vector3(0, -0.1f, 0);
+			}
+			else if(Input.GetKey(KeyCode.LeftArrow))
+			{
+				BlueBall.position += new Vector3(-0.1f, 0, 0);
+			}
+			else if(Input.GetKey(KeyCode.RightArrow))
+			{
+				BlueBall.position += new Vector3(0.1f, 0, 0);
+			}
+		}
 		
 		if(hpValue >= 0 
 			&& !(currMovePattern == SLEEP_IN_BED)
@@ -39,7 +65,7 @@ public class GlobalPotassium : MonoBehaviour {
 			&& !isRecoveringHP)
 		{
 			hpValueFloat -= 0.005f * time_speed;
-			Debug.Log("Current move patter is " + currMovePattern);
+			//Debug.Log("Current move pattern is " + currMovePattern);
 		}
 
 		if(isRecoveringHP)

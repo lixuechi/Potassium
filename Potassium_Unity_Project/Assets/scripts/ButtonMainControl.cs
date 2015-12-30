@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ButtonMainControl : GlobalPotassium {
 
 	public Transform OrangeFeed;
+	public Transform BlueBallFeed;
 	public Text hackText;
 	
 
@@ -16,6 +17,8 @@ public class ButtonMainControl : GlobalPotassium {
 		btnNames.Add("Hack");
 		btnNames.Add("Minus");
 		btnNames.Add("Plus");
+		btnNames.Add("Train(Voice)");
+		btnNames.Add("Tickle");
 
 		foreach (string btnName in btnNames) 
 		{
@@ -51,10 +54,23 @@ public class ButtonMainControl : GlobalPotassium {
 			Debug.Log("Increment speed");
 			time_speed++;
 			break;
+			case "Train(Voice)":
+			Debug.Log("Train Potassium with voice system");
+			break;
+			case "Tickle":
+			Debug.Log("Tickle Potassium with a blue ball or sth else");
+			ticklePotassium();
+			break;
 		}
 	}
 
 	void Update () {
 	
+	}
+
+	void ticklePotassium()
+	{
+		BlueBall = Instantiate(BlueBallFeed, new Vector3(0, 0, 0), Quaternion.identity) as Transform;
+		isBlueBallPresent = true;
 	}
 }

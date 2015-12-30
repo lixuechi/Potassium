@@ -43,6 +43,7 @@
 -define:UNITY_EDITOR_OSX
 'Assets/MouseControl.cs'
 'Assets/PotassiumMemory.cs'
+'Assets/PotassiumSightRay.cs'
 'Assets/PotassiumStatus.cs'
 'Assets/SpeedControl.cs'
 'Assets/scripts/ButtonMainControl.cs'
