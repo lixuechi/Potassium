@@ -95,6 +95,8 @@ public class PotassiumMove : GlobalPotassium {
 			break;
 		case EXIT_BED: currentPosition = exitBed(currentPosition);
 			break;
+		case HIDE_FROM_OWL: currentPosition = hideFromOwl(currentPosition);
+			break;
 		}
 
 
@@ -124,6 +126,11 @@ public class PotassiumMove : GlobalPotassium {
 			}
 		}
 
+		// Going to the opposite directions from the owl if there's any
+		if(isOwlPresent)
+		{
+			currMovePattern = HIDE_FROM_OWL;
+		}
 
 		// Going to bed if tired or lazy
 		if(isTired)
@@ -273,6 +280,30 @@ public class PotassiumMove : GlobalPotassium {
 		{
 			currPos -= verticalMoveUnit;
 		}
+		return currPos;
+	}
+
+	Vector3 hideFromOwl(Vector3 currPos)
+	{
+		Vector3 owlPos = Owl.position;
+		if(owlPos.x - currPos.x > 0)
+		{
+			currPos -= horizontalMoveUnit * time_speed;
+		}
+		else if(owlPos.x - currPos.x < 0)
+		{
+			currPos += horizontalMoveUnit * time_speed;
+		}
+		
+		if(owlPos.y - currPos.y > 0)
+		{
+			currPos -= verticalMoveUnit * time_speed;
+		}
+		else if(owlPos.y - currPos.y < 0)
+		{
+			currPos += verticalMoveUnit * time_speed;
+		}
+
 		return currPos;
 	}
 

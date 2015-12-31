@@ -5,6 +5,7 @@ public class GlobalPotassium : MonoBehaviour {
 
 	public static bool isOrangePresent = false;
 	public static bool isBlueBallPresent = false;
+	public static bool isOwlPresent = false;
 
 	public static Transform BlueBall;
 	public static Transform Owl;
@@ -27,6 +28,7 @@ public class GlobalPotassium : MonoBehaviour {
 	public const int MOVE_TO_BED = 8;
 	public const int SLEEP_IN_BED = 9;
 	public const int EXIT_BED = 10;
+	public const int HIDE_FROM_OWL = 11;
 
 	public static int currMovePattern = 0;
 

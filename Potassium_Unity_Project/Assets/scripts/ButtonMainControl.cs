@@ -83,5 +83,6 @@ public class ButtonMainControl : GlobalPotassium {
 	void OwlAppears()
 	{
 		Owl = Instantiate(OwlFeed, new Vector3(-2, 0, 0), Quaternion.identity) as Transform;
+		isOwlPresent = true;
 	}
 }
