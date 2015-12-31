@@ -5,7 +5,9 @@ public class GlobalPotassium : MonoBehaviour {
 
 	public static bool isOrangePresent = false;
 	public static bool isBlueBallPresent = false;
+
 	public static Transform BlueBall;
+	public static Transform Owl;
 
 	public static Transform orangeTransform;
 	public static bool isTired = false;

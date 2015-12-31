@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\MouseControl.cs" />
+     <Compile Include="Assets\OwlControl.cs" />
      <Compile Include="Assets\PotassiumMemory.cs" />
      <Compile Include="Assets\PotassiumSightRay.cs" />
      <Compile Include="Assets\PotassiumStatus.cs" />

@@ -8,6 +8,7 @@ public class ButtonMainControl : GlobalPotassium {
 
 	public Transform OrangeFeed;
 	public Transform BlueBallFeed;
+	public Transform OwlFeed;
 	public Text hackText;
 	
 
@@ -19,6 +20,7 @@ public class ButtonMainControl : GlobalPotassium {
 		btnNames.Add("Plus");
 		btnNames.Add("Train(Voice)");
 		btnNames.Add("Tickle");
+		btnNames.Add("Slash");
 
 		foreach (string btnName in btnNames) 
 		{
@@ -61,6 +63,10 @@ public class ButtonMainControl : GlobalPotassium {
 			Debug.Log("Tickle Potassium with a blue ball or sth else");
 			ticklePotassium();
 			break;
+			case "Slash":
+			Debug.Log("Slash: Let the slash begin!");
+			OwlAppears();
+			break;
 		}
 	}
 
@@ -72,5 +78,10 @@ public class ButtonMainControl : GlobalPotassium {
 	{
 		BlueBall = Instantiate(BlueBallFeed, new Vector3(0, 0, 0), Quaternion.identity) as Transform;
 		isBlueBallPresent = true;
+	}
+
+	void OwlAppears()
+	{
+		Owl = Instantiate(OwlFeed, new Vector3(-2, 0, 0), Quaternion.identity) as Transform;
 	}
 }
