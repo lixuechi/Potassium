@@ -40,9 +40,10 @@ public class OwlControl : MonoBehaviour {
 
 		if(isShowHarmText)
 		{
-			if(harm == null)
+			//if(harm == null)
 			{
 				harm = Instantiate(harmPrefab, this.transform.position, Quaternion.identity) as Transform;
+				isShowHarmText = false;
 			}
 		}
 	
