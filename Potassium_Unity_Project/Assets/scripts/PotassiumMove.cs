@@ -3,13 +3,10 @@ using System.Collections;
 
 public class PotassiumMove : GlobalPotassium {
 
-	public Transform bedTransform;
-
 	private float lastTimeCheckpoint = 0;
 	private Vector3 currentPosition = new Vector3();
 
-
-	int NUM_OF_MOVE_OPTIONS = 0;
+	int NUM_OF_RANDOM_MOVE_OPTIONS = 0;
 
 	private int randomMovePattern = 0;
 	private int currMoveDirection = 0;
@@ -22,44 +19,44 @@ public class PotassiumMove : GlobalPotassium {
 	private Vector3 orangePos = new Vector3();
 
 	void Start () {
-		NUM_OF_MOVE_OPTIONS = 5;
+		NUM_OF_RANDOM_MOVE_OPTIONS = 5;
 	}
 
 	void Update () {
 
 		// make a decision for the moving direction
-		if ( (Time.realtimeSinceStartup - lastTimeCheckpoint >= 10 / time_speed)
+		if ( (Time.realtimeSinceStartup - lastTimeCheckpoint >= RANDOM_MOVE_INTERVAL / time_speed)
 		   && !(currMovePattern == SLEEP_IN_BED) 
 		   && !(currMovePattern == MOVE_TO_BED)
 		   && !isTired) 
 		{
-			Debug.Log("Last time checkpoint updated");
+			//Debug.Log("Last time checkpoint updated");
 
 			// determine where to go in each a few seconds
-			randomMovePattern = Random.Range(MOVE_UP, NUM_OF_MOVE_OPTIONS + 1);
+			randomMovePattern = Random.Range(MOVE_UP, NUM_OF_RANDOM_MOVE_OPTIONS + 1);
 			switch(randomMovePattern)
 			{
-			case MOVE_UP: Debug.Log("Move up");
+			case MOVE_UP: //Debug.Log("Move up");
 						  currMoveDirection = MOVE_UP;
 				currMovePattern = MOVE_UP;
 						  break;
-			case MOVE_DOWN: Debug.Log("Move down");
+			case MOVE_DOWN: //Debug.Log("Move down");
 						    currMoveDirection = MOVE_DOWN;
 				currMovePattern = MOVE_DOWN;
 							break;
-			case MOVE_LEFT: Debug.Log("Move left");
+			case MOVE_LEFT: //Debug.Log("Move left");
 							currMoveDirection = MOVE_LEFT;
 				currMovePattern = MOVE_LEFT;
 							break;
-			case MOVE_RIGHT: Debug.Log("Move right");
+			case MOVE_RIGHT: //Debug.Log("Move right");
 							 currMoveDirection = MOVE_RIGHT;
 				currMovePattern = MOVE_RIGHT;
 							 break;
-			case MOVE_IN_CIRCLE: Debug.Log("Move in a circle");
+			case MOVE_IN_CIRCLE: //Debug.Log("Move in a circle");
 				currMoveDirection = STAY_STATIC;
 				currMovePattern = MOVE_IN_CIRCLE;
 				break;
-			case MOVE_IN_SQUARE: Debug.Log("Move in a square");
+			case MOVE_IN_SQUARE: //Debug.Log("Move in a square");
 				timeSinceStartMovingInSquare = 0; // init time since start moving in a square
 				currMoveDirection = STAY_STATIC;
 				currMovePattern = MOVE_IN_SQUARE;

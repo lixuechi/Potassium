@@ -3,6 +3,10 @@ using System.Collections;
 
 public class GlobalPotassium : MonoBehaviour {
 
+	public Transform bedTransform;
+
+	public const int RANDOM_MOVE_INTERVAL = 10;
+
 	public static bool isOrangePresent = false;
 	public static bool isBlueBallPresent = false;
 	public static bool isOwlPresent = false;
