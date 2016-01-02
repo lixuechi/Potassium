@@ -9,6 +9,7 @@ public class ButtonsControlForScene0001 : MonoBehaviour {
 	public GameObject PotassiumIconButton;
 	public GameObject OpenResultButton;
 	public GameObject Os;
+	public GameObject[] Obasket; 
 
 	void Awake()
 	{
@@ -56,10 +57,26 @@ public class ButtonsControlForScene0001 : MonoBehaviour {
 		    break;
 		case "OpenResult":
 			Debug.Log("Open Result button pushed");
+			generateFortuneTellingResult();
 			Os.SetActive(true);
 			OpenResultButton.SetActive(false);
 			PotassiumIconButton.SetActive(true);
 			break;
+		}
+	}
+
+	const int NUM_OF_FORTUNE_TELLING_ORANGES = 7;
+	void generateFortuneTellingResult()
+	{
+		int rand = Random.Range (0, NUM_OF_FORTUNE_TELLING_ORANGES + 1);
+
+		for (int i = 0; i < rand; i++) 
+		{
+			Obasket[i].SetActive(true);
+		}
+		for (int i = rand; i < NUM_OF_FORTUNE_TELLING_ORANGES; i++) 
+		{
+			Obasket[i].SetActive(false);
 		}
 	}
 }
