@@ -21,6 +21,7 @@ public class ButtonMainControl : GlobalPotassium {
 		btnNames.Add("Train(Voice)");
 		btnNames.Add("Tickle");
 		btnNames.Add("Slash");
+		btnNames.Add("GoToFortuneTelling");
 
 		foreach (string btnName in btnNames) 
 		{
@@ -66,6 +67,9 @@ public class ButtonMainControl : GlobalPotassium {
 			case "Slash":
 			Debug.Log("Slash: Let the slash begin!");
 			OwlAppears();
+			break;
+			case "GoToFortuneTelling":
+			Application.LoadLevel("0001");
 			break;
 		}
 	}
