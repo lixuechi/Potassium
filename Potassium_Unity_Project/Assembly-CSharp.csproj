@@ -49,6 +49,7 @@
      <Compile Include="Assets\ButtonsControlForScene0001.cs" />
      <Compile Include="Assets\CameraFollowPlayerForSimsPot.cs" />
      <Compile Include="Assets\MouseControl.cs" />
+     <Compile Include="Assets\OriginPotassiumMoveForPixium.cs" />
      <Compile Include="Assets\OwlControl.cs" />
      <Compile Include="Assets\PotassiumMemory.cs" />
      <Compile Include="Assets\PotassiumMoveForSimsPot.cs" />

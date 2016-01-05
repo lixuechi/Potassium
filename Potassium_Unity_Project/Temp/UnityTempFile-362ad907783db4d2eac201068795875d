@@ -44,6 +44,7 @@
 'Assets/ButtonsControlForScene0001.cs'
 'Assets/CameraFollowPlayerForSimsPot.cs'
 'Assets/MouseControl.cs'
+'Assets/OriginPotassiumMoveForPixium.cs'
 'Assets/OwlControl.cs'
 'Assets/PotassiumMemory.cs'
 'Assets/PotassiumMoveForSimsPot.cs'
