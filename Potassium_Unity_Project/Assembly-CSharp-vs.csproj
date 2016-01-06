@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\ButtonsControlForScene0001.cs" />
      <Compile Include="Assets\CameraFollowPlayerForSimsPot.cs" />
+     <Compile Include="Assets\CarpetObstacleControl.cs" />
      <Compile Include="Assets\MouseControl.cs" />
      <Compile Include="Assets\OriginPotassiumMoveForPixium.cs" />
      <Compile Include="Assets\OwlControl.cs" />
