@@ -46,7 +46,33 @@ public class OriginPotassiumMoveForPixium : MonoBehaviour {
 	
 	}
 
+	void deleteAllPresentOranges()
+	{
+		try
+		{
+			GameObject[] bunchOfOrangesToDelete = GameObject.FindGameObjectsWithTag("Orange");
+			for(int x = 0; x < bunchOfOrangesToDelete.Length; x++)
+			{
+				Destroy (bunchOfOrangesToDelete[x]);
+			}
+
+		}
+		catch(UnityException e)
+		{
+			return;
+		}
+	}
+
 	void regenerateOranges()
 	{
+		deleteAllPresentOranges ();
+		for (int i = 0; i < 20; i++) 
+		{
+			for(int j = 0; j < 20; j++)
+			{
+				Transform _666 = Instantiate (OrangePrefab, new Vector3(-5+i*0.5f,-5+j*0.5f,0), Quaternion.identity) as Transform;
+				_666.parent = this.transform;
+			}
+		}
 	}
 }
