@@ -66,11 +66,14 @@ public class OriginPotassiumMoveForPixium : MonoBehaviour {
 	void regenerateOranges()
 	{
 		deleteAllPresentOranges ();
+
+		Vector3 psmPos = this.transform.position;
+
 		for (int i = 0; i < 20; i++) 
 		{
 			for(int j = 0; j < 20; j++)
 			{
-				Transform _666 = Instantiate (OrangePrefab, new Vector3(-5+i*0.5f,-5+j*0.5f,0), Quaternion.identity) as Transform;
+				Transform _666 = Instantiate (OrangePrefab, new Vector3(psmPos.x-5+i*0.5f,psmPos.y-5+j*0.5f,0), Quaternion.identity) as Transform;
 				_666.parent = this.transform;
 			}
 		}
