@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PotassiumThinksControl {
+public class PotassiumThinksControl : MonoBehaviour {
 
-	string name = "Potassium";
-	int age = 0;
-	byte[] birthDate = {2016, 1, 10};
-	string gender = "female";
-	string astrologySign = "Capricornus";
+	private string name = "Potassium";
+	private int age = 0;
+	private int[] birthDate = {2016, 1, 10};
+	private string gender = "female";
+	private string astrologySign = "Capricornus";
 
 	// Constructor
 	PotassiumThinksControl()
