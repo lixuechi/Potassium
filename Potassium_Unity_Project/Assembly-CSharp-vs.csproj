@@ -58,6 +58,7 @@
      <Compile Include="Assets\PotassiumMoveForSimsPot.cs" />
      <Compile Include="Assets\PotassiumSightRay.cs" />
      <Compile Include="Assets\PotassiumStatus.cs" />
+     <Compile Include="Assets\PotassiumThinksControl.cs" />
      <Compile Include="Assets\SightRayControl.cs" />
      <Compile Include="Assets\SpeedControl.cs" />
      <Compile Include="Assets\scripts\ButtonMainControl.cs" />

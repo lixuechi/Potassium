@@ -53,6 +53,7 @@
 'Assets/PotassiumMoveForSimsPot.cs'
 'Assets/PotassiumSightRay.cs'
 'Assets/PotassiumStatus.cs'
+'Assets/PotassiumThinksControl.cs'
 'Assets/SightRayControl.cs'
 'Assets/SpeedControl.cs'
 'Assets/scripts/ButtonMainControl.cs'
