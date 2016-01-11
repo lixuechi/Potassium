@@ -32,4 +32,27 @@ public class PotassiumThinksControl : MonoBehaviour {
 	{
 		age = newAge;
 	}
+
+	static int mood = 100;
+	void rage()
+	{
+
+	}
+
+	void sing()
+	{
+
+	}
+
+	void updateMoodState()
+	{
+		if (mood >= 80) 
+		{
+			sing ();
+		} 
+		else if (mood <= 10) 
+		{
+			rage ();
+		}
+	}
 }
