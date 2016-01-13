@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AvatarProjextButtonControl.cs" />
      <Compile Include="Assets\ButtonsControlForScene0001.cs" />
      <Compile Include="Assets\CameraFollowPlayerForSimsPot.cs" />
      <Compile Include="Assets\CarpetObstacleControl.cs" />
