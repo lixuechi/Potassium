@@ -1,2 +1,2 @@
 # Potassium
-simple AI for a pet with Unity &amp; C#
+A random pet game with various scenes for elaborating whatever I want to write. 
